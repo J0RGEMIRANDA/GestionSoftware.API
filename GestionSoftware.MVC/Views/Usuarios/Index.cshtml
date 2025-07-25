@@ -7,7 +7,7 @@
 <div class="table-container">
     <div class="table-header">
         <h1>Lista de Usuarios</h1>
-        <a asp-action="Create" class="btn-add">+ Nuevo Usuario</a>
+        <a asp-action="Create" class="btn-add">Nuevo Usuario</a>
     </div>
     
     <div class="table-body">
@@ -35,7 +35,7 @@
         }
         else
         {
-            <div style="padding: 40px; text-align: center; color: #666;">
+            <div>
                 <h3>No hay usuarios</h3>
                 <p>Agrega el primer usuario al sistema.</p>
                 <a asp-action="Create" class="btn-primary">Crear Usuario</a>
@@ -46,7 +46,7 @@
 
 @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage as string))
 {
-    <div style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; margin: 20px 0; text-align: center;">
+    <div>
         <strong>@ViewBag.ErrorMessage</strong>
     </div>
 }
