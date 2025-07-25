@@ -2,11 +2,13 @@
 using GestionSoftware.API.Data;
 using GestionSoftware.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GestionSoftware.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize] // Agregar esta línea
     public class ProyectosController : ControllerBase
     {
         private readonly GestionProyectosSoftwareContext _context;

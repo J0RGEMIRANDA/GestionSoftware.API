@@ -1,0 +1,54 @@
+﻿@model GestionSoftware.MVC.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+    Layout = "_AuthLayout";
+}
+
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2>Iniciar Sesión</h2>
+        </div>
+        <div class="auth-body">
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="auth-alert">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
+
+            <form asp-action="Login" asp-route-returnUrl="@ViewData["ReturnUrl"]" method="post">
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="validation-summary">
+                        <div asp-validation-summary="ModelOnly"></div>
+                    </div>
+                }
+                
+                <div class="auth-form-group">
+                    <label asp-for="Correo"></label>
+                    <input asp-for="Correo" class="auth-form-control" placeholder="usuario@ejemplo.com" />
+                    <span asp-validation-for="Correo" class="auth-error"></span>
+                </div>
+                
+                <div class="auth-form-group">
+                    <label asp-for="Contrasena"></label>
+                    <input asp-for="Contrasena" class="auth-form-control" placeholder="Ingrese su contraseña" />
+                    <span asp-validation-for="Contrasena" class="auth-error"></span>
+                </div>
+                
+                <button type="submit" class="auth-btn">Iniciar Sesión</button>
+            </form>
+            
+            <div class="auth-link-container">
+                <p>¿No tienes una cuenta? <a asp-action="Register" class="auth-link">Regístrate aquí</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

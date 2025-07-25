@@ -2,11 +2,13 @@
 using GestionSoftware.API.Data;
 using GestionSoftware.API.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GestionSoftware.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize] // Agregar esta línea
     public class TareasController : ControllerBase
     {
         private readonly GestionProyectosSoftwareContext _context;
@@ -60,7 +62,7 @@ namespace GestionSoftware.API.Controllers
             t.Id = id;
             var sql = @"UPDATE Tareas SET 
                     Titulo=@Titulo, Descripcion=@Descripcion, Estado=@Estado, Prioridad=@Prioridad, 
-                    FechaVencimiento=@FechaVencimiento, UsuarioAsignadoId=@UsuarioId, ProyectoId=@ProyectoId
+                    FechaVencimiento=@FechaVencimiento, UsuarioId=@UsuarioId, ProyectoId=@ProyectoId
                     WHERE Id=@Id";
             await connection.ExecuteAsync(sql, t);
             return Ok();

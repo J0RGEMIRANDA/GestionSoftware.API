@@ -1,0 +1,58 @@
+﻿@model GestionSoftware.MVC.Models.RegisterViewModel
+
+@{
+    ViewData["Title"] = "Registro";
+    Layout = "_AuthLayout";
+}
+
+<div class="auth-container">
+    <div class="auth-card">
+        <div class="auth-header">
+            <h2>Crear Cuenta</h2>
+        </div>
+        <div class="auth-body">
+            <form asp-action="Register" method="post">
+                @if (!ViewData.ModelState.IsValid)
+                {
+                    <div class="validation-summary">
+                        <div asp-validation-summary="ModelOnly"></div>
+                    </div>
+                }
+                
+                <div class="auth-form-group">
+                    <label asp-for="Nombre"></label>
+                    <input asp-for="Nombre" class="auth-form-control" placeholder="Ingrese su nombre completo" />
+                    <span asp-validation-for="Nombre" class="auth-error"></span>
+                </div>
+                
+                <div class="auth-form-group">
+                    <label asp-for="Correo"></label>
+                    <input asp-for="Correo" class="auth-form-control" placeholder="usuario@ejemplo.com" />
+                    <span asp-validation-for="Correo" class="auth-error"></span>
+                </div>
+                
+                <div class="auth-form-group">
+                    <label asp-for="Contrasena"></label>
+                    <input asp-for="Contrasena" class="auth-form-control" placeholder="Mínimo 6 caracteres" />
+                    <span asp-validation-for="Contrasena" class="auth-error"></span>
+                </div>
+                
+                <div class="auth-form-group">
+                    <label asp-for="ConfirmarContrasena"></label>
+                    <input asp-for="ConfirmarContrasena" class="auth-form-control" placeholder="Confirme su contraseña" />
+                    <span asp-validation-for="ConfirmarContrasena" class="auth-error"></span>
+                </div>
+                
+                <button type="submit" class="auth-btn">Crear Cuenta</button>
+            </form>
+            
+            <div class="auth-link-container">
+                <p>¿Ya tienes una cuenta? <a asp-action="Login" class="auth-link">Inicia sesión aquí</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
