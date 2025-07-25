@@ -1,0 +1,98 @@
+@model GestionSoftware.MVC.Models.ReporteViewModel
+
+@{
+    ViewData["Title"] = "Reporte de Tareas";
+}
+
+<div class="table-container">
+    <div class="table-header">
+        <h1>Reporte de Tareas</h1>
+        <a asp-action="Index" class="btn-add">Volver a Lista</a>
+    </div>
+    
+    <!-- Filtros -->
+    <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+        <h3 style="margin-bottom: 15px; color: #333;">Filtros</h3>
+        <form asp-action="Reporte" method="get">
+            <div style="display: flex; gap: 15px; flex-wrap: wrap; align-items: end;">
+                <div class="form-group" style="min-width: 200px;">
+                    <label>Proyecto</label>
+                    <select name="proyectoId" class="form-control form-select">
+                        @foreach (var proyecto in Model.Proyectos)
+                        {
+                            <option value="@proyecto.Value" selected="@proyecto.Selected">@proyecto.Text</option>
+                        }
+                    </select>
+                </div>
+                
+                <div class="form-group" style="min-width: 150px;">
+                    <label>Estado</label>
+                    <select name="estado" class="form-control form-select">
+                        @foreach (var estado in Model.Estados)
+                        {
+                            <option value="@estado.Value" selected="@estado.Selected">@estado.Text</option>
+                        }
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <button type="submit" class="btn-primary">Filtrar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Tabla de resultados -->
+    <div class="table-body">
+        @if (Model.TareasFiltradas != null && Model.TareasFiltradas.Any())
+        {
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Estado</th>
+                        <th>Prioridad</th>
+                        <th>Fecha</th>
+                        <th>Usuario</th>
+                        <th>Proyecto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var tarea in Model.TareasFiltradas)
+                    {
+                        <tr>
+                            <td><strong>@tarea.Titulo</strong></td>
+                            <td>
+                                <span>
+                                    @tarea.Estado
+                                </span>
+                            </td>
+                            <td>
+                                <span>
+                                    @tarea.Prioridad
+                                </span>
+                            </td>
+                            <td>@tarea.FechaVencimiento.ToString("dd/MM/yyyy")</td>
+                            <td>@(Model.NombresUsuarios.ContainsKey(tarea.UsuarioId) ? Model.NombresUsuarios[tarea.UsuarioId] : $"Usuario {tarea.UsuarioId}")</td>
+                            <td>@(Model.NombresProyectos.ContainsKey(tarea.ProyectoId) ? Model.NombresProyectos[tarea.ProyectoId] : $"Proyecto {tarea.ProyectoId}")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div>
+                <h3>No se encontraron tareas</h3>
+                <p>Prueba cambiando los filtros para ver más resultados.</p>
+            </div>
+        }
+    </div>
+    
+    @if (!string.IsNullOrEmpty(ViewBag.ErrorMessage as string))
+    {
+        <div>
+            <strong>@ViewBag.ErrorMessage</strong>
+        </div>
+    }
+</div>

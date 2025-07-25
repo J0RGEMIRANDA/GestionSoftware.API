@@ -8,7 +8,6 @@ namespace GestionSoftware.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize] // Agregar esta línea
     public class TareasController : ControllerBase
     {
         private readonly GestionProyectosSoftwareContext _context;
@@ -31,7 +30,7 @@ namespace GestionSoftware.API.Controllers
         {
             using var connection = _context.CreateConnection();
             var tarea = await connection.QueryFirstOrDefaultAsync<Tarea>(
-                "SELECT * FROM Tareas WHERE Id = @Id", new { Id = id });
+                "SELECT * FROM Tareas WHERE Id = @Id", new { Id = @id });
             return tarea == null ? NotFound() : Ok(tarea);
         }
 
@@ -40,7 +39,7 @@ namespace GestionSoftware.API.Controllers
         {
             using var connection = _context.CreateConnection();
             var tareas = await connection.QueryAsync<Tarea>(
-                "SELECT * FROM Tareas WHERE ProyectoId = @ProyectoId", new { ProyectoId = proyectoId });
+                "SELECT * FROM Tareas WHERE ProyectoId = @ProyectoId", new { ProyectoId = @proyectoId });
             return Ok(tareas);
         }
 
@@ -72,7 +71,7 @@ namespace GestionSoftware.API.Controllers
         public async Task<IActionResult> Eliminar(int id)
         {
             using var connection = _context.CreateConnection();
-            await connection.ExecuteAsync("DELETE FROM Tareas WHERE Id = @Id", new { Id = id });
+            await connection.ExecuteAsync("DELETE FROM Tareas WHERE Id = @Id", new { Id = @id });
             return Ok();
         }
     }

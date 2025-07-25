@@ -7,7 +7,7 @@ using System.Diagnostics;
 
 namespace GestionSoftware.MVC.Controllers
 {
-    // Remover [Authorize] temporalmente para permitir acceso sin login
+    [Authorize] 
     public class HomeController : Controller
     {
         private readonly IConfiguration _configuration;
@@ -23,24 +23,20 @@ namespace GestionSoftware.MVC.Controllers
         {
             var viewModel = new HomeViewModel();
             
-            // Solo intentar obtener datos si el usuario está autenticado
+
             if (User.Identity.IsAuthenticated)
             {
                 try
                 {
-                    // Configurar token desde la sesión
+
                     var token = HttpContext.Session.GetString("JwtToken");
                     if (!string.IsNullOrEmpty(token))
                     {
-                        Console.WriteLine($"=== HOME DEBUG ===");
-                        Console.WriteLine($"Token recuperado de sesión: {!string.IsNullOrEmpty(token)}");
+
                         
-                        // CRÍTICO: Configurar el token globalmente para TODOS los tipos
+
                         GlobalCrudSettings.SharedJwtToken = token;
                         
-                        Console.WriteLine($"Token configurado globalmente: {!string.IsNullOrEmpty(GlobalCrudSettings.SharedJwtToken)}");
-
-                        // Configurar endpoints
                         Crud<Proyecto>.EndPoint = $"{_apiBaseUrl}/api/Proyectos";
                         Crud<Tarea>.EndPoint = $"{_apiBaseUrl}/api/Tareas";
                         Crud<Usuario>.EndPoint = $"{_apiBaseUrl}/api/Usuarios";
@@ -58,20 +54,16 @@ namespace GestionSoftware.MVC.Controllers
                     }
                     else
                     {
-                        Console.WriteLine("⚠️ No hay token en la sesión - HomeController");
                         SetDefaultValues(viewModel);
                     }
                 }
                 catch (Exception ex)
                 {
-                    // Si hay error, usar valores por defecto
-                    Console.WriteLine($"Error conectando con API: {ex.Message}");
                     SetDefaultValues(viewModel);
                 }
             }
             else
             {
-                // Usuario no autenticado, mostrar valores por defecto
                 SetDefaultValues(viewModel);
             }
 

@@ -1,0 +1,169 @@
+
+.table-container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 30px 0;
+}
+
+.table-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 25px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table-header h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 300;
+}
+
+.btn-add {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-add:hover {
+    background: white;
+    color: #667eea;
+}
+
+.table-body {
+    padding: 0;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.custom-table thead {
+    background: #f8f9fa;
+}
+
+.custom-table th {
+    padding: 20px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #e1e5e9;
+}
+
+.custom-table td {
+    padding: 20px;
+    border-bottom: 1px solid #e1e5e9;
+    color: #555;
+}
+
+.custom-table tbody tr {
+    transition: all 0.3s ease;
+}
+
+.custom-table tbody tr:hover {
+    background-color: #f8f9fa;
+    transform: scale(1.01);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 8px;
+}
+
+.btn-action {
+    padding: 6px 12px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-view {
+    background: #17a2b8;
+    color: white;
+}
+
+.btn-view:hover {
+    background: #138496;
+    color: white;
+}
+
+.btn-edit {
+    background: #ffc107;
+    color: #212529;
+}
+
+.btn-edit:hover {
+    background: #e0a800;
+    color: #212529;
+}
+
+.btn-delete {
+    background: #dc3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background: #c82333;
+    color: white;
+}
+
+.status-badge {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.status-pendiente {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-progreso {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.status-completada {
+    background: #d4edda;
+    color: #155724;
+}
+
+.priority-badge {
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.priority-alta {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.priority-media {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.priority-baja {
+    background: #d1ecf1;
+    color: #0c5460;
+}

@@ -8,84 +8,25 @@
     <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
 }
 
-<div class="hero-section">
-    <div class="container">
-        <div class="hero-content">
-            <h1>Sistema de Gestión de Tareas</h1>
-            <p class="subtitle">Para Equipos de Desarrollo de Software</p>
-            <div class="hero-description">
-                En esta plataforma, puedes crear, asignar y hacer seguimiento de tareas 
-                dentro de un proyecto. El objetivo es construir una herramienta robusta 
-                que facilite la gestión eficiente de tareas para equipos de desarrollo.
-            </div>
-            <div class="cta-buttons">
-                <a href="@Url.Action("Index", "Proyectos")" class="cta-btn">Ver Proyectos</a>
-                <a href="@Url.Action("Index", "Tareas")" class="cta-btn">Gestionar Tareas</a>
-                <a href="@Url.Action("Create", "Proyectos")" class="cta-btn">Nuevo Proyecto</a>
-            </div>
+<div class="features-section">
+    <h2 class="section-title">¿Qué puedes hacer?</h2>
+    <p class="section-subtitle">
+        Funciones principales del sistema
+    </p>
+    
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="feature-icon projects">P</div>
+            <h3>Proyectos</h3>
+            <p>Crea y administra proyectos. Organiza tu trabajo por proyectos.</p>
+            <a href="@Url.Action("Index", "Proyectos")" class="feature-link">Ver Proyectos</a>
         </div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="features-section">
-        <h2 class="section-title">Funcionalidades Principales</h2>
-        <p class="section-subtitle">
-            Herramientas completas para la gestión eficiente de proyectos y tareas
-        </p>
         
-        <div class="features-grid">
-            <div class="feature-card">
-                <div class="feature-icon projects">P</div>
-                <h3>Gestión de Proyectos</h3>
-                <p>Crea y administra proyectos de desarrollo. Organiza tu trabajo por proyectos con descripciones detalladas y seguimiento completo.</p>
-                <a href="@Url.Action("Index", "Proyectos")" class="feature-link">Ver Proyectos</a>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon tasks">T</div>
-                <h3>Control de Tareas</h3>
-                <p>Asigna tareas, establece prioridades y fechas de vencimiento. Realiza seguimiento del progreso con estados personalizables.</p>
-                <a href="@Url.Action("Index", "Tareas")" class="feature-link">Gestionar Tareas</a>
-            </div>
-            
-            <div class="feature-card">
-                <div class="feature-icon users">U</div>
-                <h3>Administración de Usuarios</h3>
-                <p>Gestiona los miembros del equipo, asigna roles y controla el acceso a diferentes proyectos y funcionalidades.</p>
-                <a href="@Url.Action("Index", "Usuarios")" class="feature-link">Ver Usuarios</a>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="stats-section">
-    <div class="container">
-        <div class="stats-grid">
-            <div class="stat-item">
-                <span class="stat-number">@Model.TotalProyectos</span>
-                <span class="stat-label">Proyectos</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">@Model.TotalTareas</span>
-                <span class="stat-label">Tareas Total</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">@Model.TareasPendientes</span>
-                <span class="stat-label">Pendientes</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">@Model.TareasEnProgreso</span>
-                <span class="stat-label">En Progreso</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">@Model.TareasCompletadas</span>
-                <span class="stat-label">Completadas</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number">@Model.TotalUsuarios</span>
-                <span class="stat-label">Usuarios</span>
-            </div>
+        <div class="feature-card">
+            <div class="feature-icon tasks">T</div>
+            <h3>Tareas</h3>
+            <p>Crea tareas, asígnalas y marca prioridades. Controla el progreso.</p>
+            <a href="@Url.Action("Index", "Tareas")" class="feature-link">Ver Tareas</a>
         </div>
     </div>
 </div>

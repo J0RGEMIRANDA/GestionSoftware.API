@@ -1,0 +1,307 @@
+html {
+  font-size: 14px;
+  font-family: Arial, sans-serif;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #fafafa;
+  color: #333;
+  line-height: 1.4;
+  margin-bottom: 60px;
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+/* Estilos de formularios básicos */
+.form-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 25px;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+
+.form-header h1 {
+    color: #4287f5;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.form-header h4 {
+    text-align: center;
+    color: #666;
+    margin-bottom: 25px;
+    font-weight: normal;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-row.single {
+    display: block;
+}
+
+.form-group {
+    flex: 1;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.form-control, .form-select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #4287f5;
+    outline: none;
+}
+
+.textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.form-actions {
+    text-align: center;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.btn-primary {
+    background-color: #4287f5;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #3367d6;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    color: white;
+}
+
+/* Tabla básica */
+.table-container {
+    margin: 20px auto;
+    max-width: 1200px;
+    background: white;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-header {
+    background-color: #4287f5;
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.table-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.btn-add {
+    background-color: white;
+    color: #4287f5;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    border: 2px solid white;
+}
+
+.btn-add:hover {
+    background-color: #f0f0f0;
+    color: #4287f5;
+}
+
+.custom-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.custom-table th {
+    background-color: #f8f9fa;
+    padding: 12px 8px;
+    text-align: left;
+    font-weight: bold;
+    border-bottom: 2px solid #ddd;
+    color: #333;
+}
+
+.custom-table td {
+    padding: 12px 8px;
+    border-bottom: 1px solid #ddd;
+    vertical-align: middle;
+}
+
+.custom-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.btn-action {
+    padding: 6px 12px;
+    text-decoration: none;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    border: 1px solid;
+}
+
+.btn-view {
+    background-color: #17a2b8;
+    color: white;
+    border-color: #17a2b8;
+}
+
+.btn-view:hover {
+    background-color: #138496;
+    color: white;
+}
+
+.btn-edit {
+    background-color: #ffc107;
+    color: #333;
+    border-color: #ffc107;
+}
+
+.btn-edit:hover {
+    background-color: #e0a800;
+    color: #333;
+}
+
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+    border-color: #dc3545;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+    color: white;
+}
+
+.status-badge, .priority-badge {
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.status-pendiente {
+    background-color: #ffc107;
+    color: #333;
+}
+
+.status-enprogreso {
+    background-color: #17a2b8;
+    color: white;
+}
+
+.status-completada {
+    background-color: #28a745;
+    color: white;
+}
+
+.priority-baja {
+    background-color: #6c757d;
+    color: white;
+}
+
+.priority-media {
+    background-color: #fd7e14;
+    color: white;
+}
+
+.priority-alta {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Validación simple */
+.validation-error {
+    color: #dc3545;
+    font-size: 0.85rem;
+    margin-top: 3px;
+    display: block;
+}
+
+.validation-summary {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    border: 1px solid #f1aeb5;
+}
+

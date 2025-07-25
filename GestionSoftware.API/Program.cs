@@ -7,19 +7,15 @@ using GestionSoftware.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configurar URLs fijas
 builder.WebHost.UseUrls("https://localhost:7103", "http://localhost:5103");
 
 // Add services to the container.
 builder.Services.AddControllers();
 
-// Registrar contexto de base de datos
 builder.Services.AddSingleton<GestionProyectosSoftwareContext>();
 
-// Registrar servicio JWT
 builder.Services.AddScoped<JwtService>();
 
-// Configurar JWT
 var jwtSettings = builder.Configuration.GetSection("JWT");
 var secretKey = jwtSettings["SecretKey"];
 
@@ -84,7 +80,6 @@ builder.Services.AddSwaggerGen(c =>
         Version = "v1" 
     });
 
-    // Configurar Swagger para JWT
     c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme
     {
         Description = "JWT Authorization header using the Bearer scheme. Example: \"Authorization: Bearer {token}\"",
@@ -125,7 +120,6 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// IMPORTANTE: El orden importa
 app.UseAuthentication();
 app.UseAuthorization();
 

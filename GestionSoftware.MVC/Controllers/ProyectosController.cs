@@ -16,36 +16,29 @@ namespace GestionSoftware.MVC.Controllers
             _configuration = configuration;
             _apiBaseUrl = _configuration["ApiSettings:BaseUrl"] ?? "https://localhost:7103";
             Crud<Proyecto>.EndPoint = $"{_apiBaseUrl}/api/Proyectos";
-            // REMOVER esta línea: SetJwtTokenFromSession();
         }
 
         private void SetJwtTokenFromSession()
         {
-            Console.WriteLine($"=== SetJwtTokenFromSession() - {this.GetType().Name} ===");
             
             if (HttpContext?.Session != null)
             {
                 var token = HttpContext.Session.GetString("JwtToken");
-                Console.WriteLine($"Token en sesión: {!string.IsNullOrEmpty(token)}");
                 
                 if (!string.IsNullOrEmpty(token))
                 {
-                    // CRÍTICO: Usar el token global compartido
                     GlobalCrudSettings.SharedJwtToken = token;
-                    Console.WriteLine($"Token configurado globalmente");
                 }
                 else
                 {
-                    Console.WriteLine("⚠️ NO hay token en la sesión");
                 }
             }
             else
             {
-                Console.WriteLine("⚠️ HttpContext o Session es null");
+
             }
         }
 
-        // GET: ProyectosController
         public ActionResult Index()
         {
             try
@@ -150,7 +143,6 @@ namespace GestionSoftware.MVC.Controllers
                 {
                     return RedirectToAction("Login", "Account");
                 }
-                ModelState.AddModelError("", "Error al editar el proyecto: " + ex.Message);
                 return View(data);
             }
         }
@@ -170,7 +162,6 @@ namespace GestionSoftware.MVC.Controllers
                 {
                     return RedirectToAction("Login", "Account");
                 }
-                ViewBag.ErrorMessage = $"Error: {ex.Message}";
                 return View();
             }
         }
@@ -192,7 +183,6 @@ namespace GestionSoftware.MVC.Controllers
                 {
                     return RedirectToAction("Login", "Account");
                 }
-                ModelState.AddModelError("", "Error al eliminar el proyecto: " + ex.Message);
                 return View();
             }
         }

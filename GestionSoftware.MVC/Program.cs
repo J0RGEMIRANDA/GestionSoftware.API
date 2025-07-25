@@ -9,13 +9,13 @@ namespace GestionSoftware.MVC
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Configurar URLs fijas
+    
             builder.WebHost.UseUrls("https://localhost:7002", "http://localhost:5002");
 
-            // Add services to the container.
+            
             builder.Services.AddControllersWithViews();
 
-            // Configurar autenticación con cookies
+            
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options =>
                 {
@@ -26,7 +26,7 @@ namespace GestionSoftware.MVC
                     options.SlidingExpiration = true;
                 });
 
-            // Configurar sesiones
+           
             builder.Services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromHours(1);
@@ -36,13 +36,13 @@ namespace GestionSoftware.MVC
 
             var app = builder.Build();
 
-            // Configurar endpoints para Crud
+            
             var configuration = app.Services.GetRequiredService<IConfiguration>();
             var apiBaseUrl = configuration["ApiSettings:BaseUrl"] ?? "https://localhost:7103";
             
             Crud<object>.EndPoint = $"{apiBaseUrl}/api";
 
-            // Configure the HTTP request pipeline.
+            
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
@@ -61,9 +61,6 @@ namespace GestionSoftware.MVC
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Account}/{action=Login}/{id?}");
-
-            Console.WriteLine($"MVC ejecutándose en: https://localhost:7002");
-            Console.WriteLine($"API debe estar en: https://localhost:7103");
 
             app.Run();
         }

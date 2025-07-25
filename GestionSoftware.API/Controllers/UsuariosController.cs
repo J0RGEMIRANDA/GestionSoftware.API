@@ -8,7 +8,6 @@ namespace GestionSoftware.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize] // Agregar esta línea
     public class UsuariosController : ControllerBase
     {
         private readonly GestionProyectosSoftwareContext _context;
@@ -31,7 +30,7 @@ namespace GestionSoftware.API.Controllers
         {
             using var connection = _context.CreateConnection();
             var usuario = await connection.QueryFirstOrDefaultAsync<Usuario>(
-                "SELECT * FROM Usuarios WHERE Id = @Id", new { Id = id });
+                "SELECT * FROM Usuarios WHERE Id = @Id", new { Id = @id });
             return usuario == null ? NotFound() : Ok(usuario);
         }
 
@@ -58,7 +57,7 @@ namespace GestionSoftware.API.Controllers
         public async Task<IActionResult> Eliminar(int id)
         {
             using var connection = _context.CreateConnection();
-            await connection.ExecuteAsync("DELETE FROM Usuarios WHERE Id = @Id", new { Id = id });
+            await connection.ExecuteAsync("DELETE FROM Usuarios WHERE Id = @Id", new { Id = @id });
             return Ok();
         }
     }

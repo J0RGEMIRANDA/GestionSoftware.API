@@ -6,57 +6,50 @@
     <title>@ViewData["Title"] - Sistema de Gestión</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/dashboard.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/forms.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/tables.css" asp-append-version="true" />
     @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg dashboard-nav">
+    <nav style="background-color: #4287f5; padding: 15px 0; margin-bottom: 20px;">
         <div class="container">
-            <a class="nav-brand" href="@Url.Action("Index", "Home")">
-                Sistema de Gestión
-            </a>
-            
-            <div class="navbar-nav ms-auto">
-                <div class="d-flex align-items-center gap-3">
-                    <div class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-                            Gestión
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="@Url.Action("Index", "Proyectos")">Proyectos</a></li>
-                            <li><a class="dropdown-item" href="@Url.Action("Index", "Tareas")">Tareas</a></li>
-                            <li><a class="dropdown-item" href="@Url.Action("Index", "Usuarios")">Usuarios</a></li>
-                        </ul>
-                    </div>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <a href="@Url.Action("Index", "Home")" style="color: black; text-decoration: none; font-size: 1.5rem; font-weight: bold;">
+                    Sistema de Gestión
+                </a>
+                
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <a href="@Url.Action("Index", "Proyectos")" style="color: black; text-decoration: none; font-weight: bold;">Proyectos</a>
+                    <a href="@Url.Action("Index", "Tareas")" style="color: black; text-decoration: none; font-weight: bold;">Tareas</a>
+                    <a href="@Url.Action("Reporte", "Tareas")" style="color: black; text-decoration: none; font-weight: bold;">Reportes</a>
                     
                     @if (User.Identity.IsAuthenticated)
                     {
-                        <div class="user-info">
-                            <div class="user-avatar">
-                                @User.Identity.Name?.Substring(0, 1).ToUpper()
-                            </div>
-                            <span>@User.Identity.Name</span>
-                            <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
-                                <button type="submit" class="logout-btn">Cerrar Sesión</button>
-                            </form>
-                        </div>
+                        <form asp-controller="Account" asp-action="Logout" method="post" style="display: inline;">
+                            <button type="submit" style="background: white; border: none; padding: 8px 15px; border-radius: 4px; font-weight: bold; cursor: pointer;">
+                                Salir
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a href="@Url.Action("Login", "Account")" style="background: white; padding: 8px 15px; border-radius: 4px; text-decoration: none; font-weight: bold;">
+                            Iniciar Sesión
+                        </a>
                     }
                 </div>
             </div>
         </div>
     </nav>
 
-    <div class="container-fluid">
-        <main role="main" class="py-4">
-            @RenderBody()
-        </main>
+    <div class="container" style="margin-bottom: 40px;">
+        @RenderBody()
     </div>
+
+    <footer style="background-color: #f8f9fa; padding: 20px 0; border-top: 1px solid #ddd; text-align: center; color: #666;">
+        <p>&copy; @DateTime.Now.Year - Sistema de Gestión de Tareas</p>
+    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
